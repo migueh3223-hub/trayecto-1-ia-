@@ -1,0 +1,60 @@
+import{l as e,n as t,p as n,r,t as i}from"./app-DYrm-88C.js";import{r as a}from"./subjectService-CF9U5Vtz.js";var o=null,s=[],c=[],l=[],u=0,d=!1,f=[],p=[],m=1,h=!1;async function g(){let n=await e();n&&(o=n.user,await _(),v(),y(),C(),D(),O(),t())}async function _(){let[e,t,r]=await Promise.all([n.from(`flashcards`).select(`*`).eq(`user_id`,o.id),n.from(`knowledge_topics`).select(`*`).eq(`user_id`,o.id),a(o.id)]);s=e.data||[],c=t.data||[],l=r.subjects||[]}function v(){document.querySelectorAll(`.think-tab-btn`).forEach(e=>{e.addEventListener(`click`,()=>{document.querySelectorAll(`.think-tab-btn`).forEach(e=>e.classList.remove(`active`)),document.querySelectorAll(`.think-section-pane`).forEach(e=>e.classList.remove(`active`)),e.classList.add(`active`);let n=document.getElementById(e.dataset.target);n&&n.classList.add(`active`),t()})})}function y(){let e=document.getElementById(`flashcard-wrapper`);e&&e.addEventListener(`click`,()=>{d=!d,e.classList.toggle(`is-flipped`,d)}),document.querySelectorAll(`.btn-rating`).forEach(e=>{e.addEventListener(`click`,async t=>{t.stopPropagation();let n=e.dataset.rating;await x(n)})});let t=document.getElementById(`btn-add-flashcard`);t&&t.addEventListener(`click`,()=>S()),b()}function b(){let e=document.getElementById(`flashcard-wrapper`),t=document.getElementById(`flashcard-counter`),n=document.getElementById(`card-question-text`),r=document.getElementById(`card-answer-text`),i=document.getElementById(`card-subject-name`);if(s.length===0){n&&(n.textContent=`No hay tarjetas registradas aún.`),r&&(r.textContent=`Haz clic en "+ Nueva Tarjeta" para crear tu primera flashcard.`),t&&(t.textContent=`0 / 0`);return}let a=s[u],o=l.find(e=>e.id===a.subject_id);e&&(e.classList.remove(`is-flipped`),d=!1),n&&(n.textContent=a.question),r&&(r.textContent=a.answer),i&&(i.textContent=o?o.name:`Tema General`),t&&(t.textContent=`${u+1} de ${s.length}`)}async function x(e){if(s.length===0)return;let t=s[u],i={hard:1,medium:3,easy:7}[e]||2,a=new Date(Date.now()+i*864e5).toISOString();await n.from(`flashcards`).eq(`id`,t.id).update({review_count:(t.review_count||0)+1,next_review_at:a}),r(`Registrado. Próximo repaso en ${i} día(s)`,`success`),u=(u+1)%s.length,b()}function S(){let e=document.getElementById(`new-flashcard-modal`);e||(e=document.createElement(`div`),e.id=`new-flashcard-modal`,e.className=`modal-overlay`,document.body.appendChild(e)),e.innerHTML=`
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3><i data-lucide="layers"></i> Nueva Tarjeta de Memoria</h3>
+        <button class="btn-close-modal" id="btn-close-card-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Asignatura</label>
+          <select id="modal-card-subject" class="form-select">
+            ${l.map(e=>`<option value="${e.id}">${e.name}</option>`).join(``)}
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pregunta o Concepto (Frente)</label>
+          <textarea id="modal-card-question" class="form-textarea" placeholder="¿Qué es...?"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Respuesta o Explicación (Dorso)</label>
+          <textarea id="modal-card-answer" class="form-textarea" placeholder="Respuesta sintética y clara..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-card">Cancelar</button>
+        <button class="btn btn-primary" id="btn-save-card">Guardar Tarjeta</button>
+      </div>
+    </div>
+  `,e.classList.add(`active`),document.getElementById(`btn-close-card-modal`).onclick=()=>e.classList.remove(`active`),document.getElementById(`btn-cancel-card`).onclick=()=>e.classList.remove(`active`),document.getElementById(`btn-save-card`).onclick=async()=>{let t=document.getElementById(`modal-card-question`).value.trim(),i=document.getElementById(`modal-card-answer`).value.trim(),a=document.getElementById(`modal-card-subject`).value;if(!t||!i){r(`Por favor escribe la pregunta y la respuesta.`,`error`);return}let{data:c}=await n.from(`flashcards`).insert({user_id:o.id,subject_id:a,question:t,answer:i,review_count:0});s.push(c),e.classList.remove(`active`),r(`Tarjeta agregada`,`success`),b()},t()}function C(){let e=document.getElementById(`btn-start-pattern-game`);e&&e.addEventListener(`click`,()=>{m=1,w()});let t=document.getElementById(`pattern-grid-tiles`);if(t){t.innerHTML=``;for(let e=0;e<16;e++){let n=document.createElement(`div`);n.className=`pattern-tile`,n.dataset.index=e,n.addEventListener(`click`,()=>E(e)),t.appendChild(n)}}}function w(){h=!0,p=[],f=[];let e=m+2;for(let t=0;t<e;t++)f.push(Math.floor(Math.random()*16));let t=document.getElementById(`pattern-game-level`),n=document.getElementById(`pattern-game-status`);t&&(t.textContent=`Nivel ${m}`),n&&(n.textContent=`Observa el patrón con atención...`);let r=500;f.forEach((e,t)=>{setTimeout(()=>{T(e),t===f.length-1&&setTimeout(()=>{h=!1,n&&(n.textContent=`¡Tu turno! Repite la secuencia.`)},500)},r),r+=600})}function T(e){let t=document.querySelectorAll(`.pattern-tile`);t[e]&&(t[e].classList.add(`highlighted`),setTimeout(()=>t[e].classList.remove(`highlighted`),400))}function E(e){if(h)return;T(e),p.push(e);let t=p.length-1;if(p[t]!==f[t]){let e=document.getElementById(`pattern-game-status`);e&&(e.textContent=`¡Secuencia incorrecta! Intenta de nuevo.`),r(`Fallaste la secuencia. Reiniciando nivel.`,`error`),m=1}else p.length===f.length&&(r(`¡Excelente! Nivel ${m} completado (+20 XP)`,`success`),m++,setTimeout(()=>w(),1e3))}function D(){let e=[{title:`Complejidad Algorítmica`,question:`Si un algoritmo divide el arreglo a la mitad en cada paso recursivo sin combinar resultados, ¿cuál es su cota temporal superior?`,options:[`O(log n)`,`O(n log n)`,`O(n²)`,`O(1)`],correctIndex:0,explanation:`La división sucesiva por un factor constante produce un árbol de profundidad log₂ n, correspondiente a O(log n).`},{title:`Sucesión Lógica de Números`,question:`¿Qué número continúa la serie: 2, 6, 12, 20, 30, ...?`,options:[`38`,`40`,`42`,`44`],correctIndex:2,explanation:`Las diferencias son +4, +6, +8, +10, por lo que la siguiente diferencia es +12. 30 + 12 = 42.`}],t=document.getElementById(`logic-puzzles-list`);t&&(t.innerHTML=e.map((e,t)=>`
+    <div class="card" style="margin-bottom: 20px;">
+      <h4 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">${e.title}</h4>
+      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">${e.question}</p>
+      <div style="display:flex; flex-direction:column; gap:8px;" id="puzzle-options-${t}">
+        ${e.options.map((e,n)=>`
+          <button class="btn btn-secondary" style="text-align:left; justify-content:flex-start;" onclick="window.checkPuzzleAnswer(${t}, ${n})">
+            ${e}
+          </button>
+        `).join(``)}
+      </div>
+      <div id="puzzle-feedback-${t}" style="display:none; margin-top:12px; font-size:13px; padding:10px 14px; border-radius:var(--radius-md);"></div>
+    </div>
+  `).join(``),window.checkPuzzleAnswer=(t,n)=>{let r=e[t],i=document.getElementById(`puzzle-feedback-${t}`);i&&(i.style.display=`block`,n===r.correctIndex?(i.style.background=`rgba(46,196,182,0.2)`,i.style.color=`#2ec4b6`,i.innerHTML=`<strong>¡Correcto!</strong> ${r.explanation}`):(i.style.background=`rgba(208,0,0,0.2)`,i.style.color=`#ff6b6b`,i.innerHTML=`<strong>Incorrecto.</strong> ${r.explanation}`))})}function O(){let e=document.getElementById(`knowledge-topics-grid`);if(!e)return;let t={not_started:`No iniciado`,learning:`Aprendiendo`,needs_review:`Requiere repaso`,practiced:`Practicado`,completed:`Completado`};e.innerHTML=c.map(e=>{let n=l.find(t=>t.id===e.subject_id);return`
+      <div class="topic-node-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:11px; font-weight:700; color:${n?.color||`var(--color-highlight)`}; text-transform:uppercase;">
+            ${n?.name||`General`}
+          </span>
+          <span class="topic-status-badge status-${e.learning_status}">
+            ${t[e.learning_status]||e.learning_status}
+          </span>
+        </div>
+        <h4 style="font-size:16px; font-weight:800; color:var(--text-primary);">${e.title}</h4>
+        <p style="font-size:13px; color:var(--text-muted); line-height:1.4;">${e.description||``}</p>
+        <div style="margin-top:auto; padding-top:10px; border-top:1px solid rgba(232,93,4,0.15); display:flex; justify-content:space-between; align-items:center;">
+          <button class="btn btn-sm btn-secondary" onclick="window.cycleTopicStatus('${e.id}', '${e.learning_status}')">
+            Cambiar Estado
+          </button>
+          <span style="font-size:11px; color:var(--text-dim);">${e.last_reviewed_at?`Repasado hace poco`:`Sin repasar`}</span>
+        </div>
+      </div>
+    `}).join(``)}window.cycleTopicStatus=async(e,t)=>{let i=[`not_started`,`learning`,`needs_review`,`practiced`,`completed`],a=i[(i.indexOf(t)+1)%i.length];await n.from(`knowledge_topics`).eq(`id`,e).update({learning_status:a,last_reviewed_at:new Date().toISOString()});let o=c.find(t=>t.id===e);o&&(o.learning_status=a),O(),r(`Estado del tema actualizado`,`info`)},window.addEventListener(`DOMContentLoaded`,async()=>{await i(),await g()});

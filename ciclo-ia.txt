@@ -1,0 +1,21 @@
+
+
+    LEER Z
+    LEER X
+    LEER Y
+
+    SI Z > X Y Z > Y ENTONCES
+        ESCRIBIR "Z es el mayor"
+
+    SINO SI X > Z Y X > Y ENTONCES
+        ESCRIBIR "X es el mayor"
+
+    SINO SI Y > Z Y Y > X ENTONCES
+        ESCRIBIR "Y es el mayor"
+
+    SINO
+        ESCRIBIR "Hay un empate en el valor mayor"
+
+    FIN SI
+
+FIN

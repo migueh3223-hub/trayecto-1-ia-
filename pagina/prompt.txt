@@ -1,0 +1,3400 @@
+# NEUROSTUDY — ULTIMATE MASTER DEVELOPMENT PROMPT V4
+
+## Intelligent Academic Productivity, Cognitive Learning & Personal Development Platform
+
+# 1. ROLE AND PROJECT VISION
+
+Act as a Senior Full-Stack Developer, Software Architect, Professional UI/UX Designer, Supabase Specialist, Educational Technology Developer, Database Architect, and Responsive Web Development Expert.
+
+Your mission is to design and develop **NeuroStudy**, a modern, intelligent, responsive, secure, and fully functional academic productivity platform.
+
+NeuroStudy helps students organize academic responsibilities, manage their time, improve their learning habits, maintain concentration, prepare for examinations, manage academic projects, and monitor their personal development.
+
+This application must be much more than a traditional calendar, task manager, or study planner.
+
+It must function as a personalized academic ecosystem that understands:
+
+- Who the student is.
+- What type of education they are pursuing.
+- What subjects or courses they study.
+- What their academic goals are.
+- How much time they have available.
+- What activities they need to complete.
+- Which activities depend on other activities.
+- Which areas they need to improve.
+- How their academic progress evolves over time.
+
+### Core slogan
+
+"Organize Your Time. Train Your Mind. Evolve Your Learning."
+
+### Main philosophy
+
+NeuroStudy must help students answer four important questions:
+
+1. What do I need to do?
+2. What should I learn or improve?
+3. How can I concentrate better?
+4. How much progress am I making?
+
+Build the entire application around these four principles.
+
+### Critical development rules
+
+- Do not build disconnected pages.
+- Do not create duplicate task management systems.
+- Do not create separate databases for individual modules.
+- Do not replace working functionality with static mockups.
+- Do not remove existing functionality when adding new features.
+- Every module must communicate with the same authenticated student account and shared Supabase database.
+- Every feature must be responsive.
+- Every visible button must have a real function.
+- Preserve existing information when modifying the project.
+- Do not fabricate analytics or academic results.
+- Do not claim that a feature is functional when it is only a visual placeholder.
+
+Before modifying an existing project, inspect its file structure, existing functionality, database relationships, migrations, and dependencies.
+
+Implement changes incrementally and preserve all working components.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+## Frontend
+
+Use:
+
+- HTML5.
+- CSS3.
+- JavaScript ES6+.
+- Vite as the development server and build tool.
+- Lucide Icons.
+- Chart.js for analytics and data visualization.
+- Supabase JavaScript Client.
+
+## Backend and infrastructure
+
+Use:
+
+- Supabase Authentication.
+- Supabase PostgreSQL Database.
+- Supabase Row Level Security (RLS).
+- Supabase Realtime.
+- Supabase Storage.
+- Supabase SQL migrations.
+- Supabase Edge Functions when secure server-side operations are required.
+
+## Development and testing
+
+Use:
+
+- Vitest for unit testing.
+- Playwright for browser and end-to-end testing.
+- Browser responsive emulation for viewport testing.
+- Actual mobile device testing.
+- Git for version control.
+
+Use plain HTML, CSS, and JavaScript.
+
+Do not introduce React, Angular, Vue, or another frontend framework.
+
+Organize JavaScript into reusable ES modules.
+
+Supabase must be the primary source of truth for all permanent academic information.
+
+LocalStorage may be used for non-sensitive interface preferences and short-lived caching.
+
+Use IndexedDB when a properly designed offline synchronization queue is necessary.
+
+---
+
+# 3. VISUAL IDENTITY AND COLOR PALETTE
+
+Use this exact color palette throughout NeuroStudy:
+
+- #03071e — Primary background.
+- #370617 — Secondary background and sidebar.
+- #6a040f — Dark accent sections.
+- #9d0208 — Secondary interactive elements.
+- #d00000 — Important alerts.
+- #dc2f02 — Active navigation elements.
+- #e85d04 — Primary buttons.
+- #f48c06 — Progress indicators.
+- #faa307 — Achievement highlights.
+- #ffba08 — Main highlights and motivational elements.
+
+### Visual direction
+
+Create a premium dark-mode interface inspired by modern professional SaaS applications.
+
+Include:
+
+- Elegant dark backgrounds.
+- Orange and yellow accent colors.
+- Subtle glassmorphism.
+- Inter or Poppins typography.
+- Smooth microinteractions.
+- Rounded cards and buttons.
+- Professional data visualizations.
+- Clean Lucide icons.
+- Attractive progress indicators.
+- Consistent spacing and visual hierarchy.
+- Accessible contrast.
+- Responsive layouts.
+
+Avoid excessive animations, crowded dashboards, and unnecessary decoration.
+
+The application should look like a polished commercial product rather than a basic academic exercise.
+
+---
+
+# 4. RESPONSIVE DESIGN SYSTEM
+
+NeuroStudy must work properly on phones, tablets, laptops, and desktop computers.
+
+Implement a mobile-first CSS strategy.
+
+### Supported screen sizes
+
+Mobile:
+
+- 320px.
+- 360px.
+- 375px.
+- 390px.
+- 414px.
+- 430px.
+
+Tablet:
+
+- 768px.
+- 820px.
+- 1024px.
+
+Desktop:
+
+- 1280px.
+- 1366px.
+- 1440px.
+- 1600px.
+- 1920px.
+
+These are viewport testing targets, not fixed layout widths.
+
+### Desktop
+
+- Persistent sidebar.
+- Multi-column dashboards.
+- Spacious calendars.
+- Full analytics panels.
+- Comfortable forms.
+
+### Tablet
+
+- Collapsible sidebar.
+- Rearranged dashboard cards.
+- Adapted calendars.
+- Readable forms.
+- Portrait and landscape layouts.
+
+### Mobile
+
+- Bottom navigation or compact mobile menu.
+- Vertically stacked cards.
+- Daily agenda instead of a cramped weekly grid.
+- Mobile-friendly task forms.
+- Touch-friendly controls.
+- Responsive charts.
+- Readable typography.
+- No unexpected horizontal overflow.
+
+Use CSS Grid, Flexbox, relative dimensions, clamp(), minmax(), and responsive images.
+
+Ensure touch targets are approximately 44×44 CSS pixels or larger.
+
+Support keyboard navigation, visible focus states, and reduced-motion preferences.
+
+Every new feature must inherit the same responsive requirements.
+
+---
+
+# 5. RESPONSIVE PREVIEW LAB
+
+Create a development tool called:
+
+**RESPONSIVE PREVIEW LAB**
+
+Create:
+
+responsive-preview.html
+
+This tool allows developers to preview the actual application at different screen sizes.
+
+Keep it separate from normal student navigation and restrict it to development mode.
+
+## 5.1 Device presets
+
+| Device | Width | Height |
+|---|---:|---:|
+| Small Mobile | 320px | 568px |
+| Standard Mobile | 390px | 844px |
+| Large Mobile | 430px | 932px |
+| Tablet Portrait | 768px | 1024px |
+| Tablet Landscape | 1024px | 768px |
+| Laptop | 1366px | 768px |
+| Desktop | 1440px | 900px |
+| Large Desktop | 1920px | 1080px |
+
+## 5.2 Preview controls
+
+Implement:
+
+- Device selection.
+- Custom viewport width.
+- Custom viewport height.
+- Portrait orientation.
+- Landscape orientation.
+- Reload preview.
+- Restore desktop view.
+- Current viewport dimensions.
+- Selected-page indicator.
+
+Dynamically resize the preview when the selected device changes.
+
+## 5.3 Page selector
+
+Allow developers to preview actual application pages:
+
+- Dashboard.
+- Planner.
+- THINK.
+- FOCUS.
+- EVOLVE.
+- Exam Preparation.
+- Personal Study Library.
+- Project Workspace.
+- Login.
+- Registration.
+- Onboarding.
+
+Use an iframe to display the actual application pages.
+
+Do not use screenshots or separate static demonstrations as substitutes.
+
+Keep the preview within the same application origin where possible.
+
+## 5.4 Layout inspection
+
+Display:
+
+- Selected device.
+- Viewport width.
+- Viewport height.
+- Orientation.
+- Selected page.
+
+Where technically detectable, identify:
+
+- Horizontal overflow.
+- Elements exceeding containers.
+- Missing page content.
+- Obvious layout errors.
+
+Do not claim that automated inspection detects every possible visual problem.
+
+## 5.5 Real-device testing
+
+Configure Vite to support local network access.
+
+Use a development command equivalent to:
+
+`vite --host 0.0.0.0`
+
+Document how to:
+
+1. Start the development server.
+2. Find the computer's local network IP address.
+3. Connect the phone and computer to the same Wi-Fi network.
+4. Open the local application address on the phone.
+5. Test actual touch interactions.
+6. Test portrait and landscape modes.
+7. Test mobile browser behavior.
+
+Do not hardcode IP addresses.
+
+Configure Supabase authentication redirect URLs for development and production environments.
+
+The preview tool simulates viewport sizes but does not completely simulate every physical device.
+
+---
+
+# 6. SUPABASE BACKEND ARCHITECTURE
+
+Supabase is the central infrastructure of NeuroStudy.
+
+All authenticated students must have isolated academic information.
+
+The application must support multiple student accounts and synchronize information across devices.
+
+## 6.1 Configuration
+
+Create:
+
+`js/supabaseClient.js`
+
+Initialize Supabase using the official JavaScript SDK.
+
+Use:
+
+- VITE_SUPABASE_URL.
+- VITE_SUPABASE_PUBLISHABLE_KEY.
+
+Create:
+
+- .env.
+- .env.example.
+- .gitignore.
+
+Never commit .env to GitHub.
+
+Never expose secret keys or service_role credentials in frontend JavaScript.
+
+Only use the publishable key in the browser with correctly configured database permissions and RLS policies.
+
+## 6.2 Authentication
+
+Create:
+
+- login.html.
+- register.html.
+- onboarding.html.
+
+Implement:
+
+- Student registration.
+- Email and password login.
+- Logout.
+- Email verification.
+- Password recovery.
+- Session persistence.
+- Session restoration.
+- Authentication state management.
+- Protected application pages.
+
+After registration:
+
+1. Create the Supabase Auth account.
+2. Initialize the academic profile.
+3. Verify email when required.
+4. Redirect to onboarding.
+5. Save academic information.
+6. Redirect to the personalized Dashboard.
+
+Returning students should access their Dashboard after authentication and profile verification.
+
+Never store passwords manually.
+
+## 6.3 Database principles
+
+Use PostgreSQL with:
+
+- UUID primary keys.
+- Foreign keys.
+- Appropriate constraints.
+- Indexes.
+- Timestamps.
+- Updated-at triggers.
+- Ownership validation.
+- SQL migration files.
+
+All student-owned records must be associated with the authenticated user's UUID.
+
+---
+
+# 7. ACADEMIC PROFILE AND PERSONALIZED ONBOARDING
+
+Before accessing the Dashboard for the first time, students must complete a multi-step onboarding process.
+
+Title:
+
+"LET'S PERSONALIZE YOUR LEARNING SPACE."
+
+Include a visual progress indicator.
+
+Allow students to edit previous answers.
+
+## STEP 1 — EDUCATION TYPE
+
+Options:
+
+- High School.
+- Technical Education.
+- Technological Education.
+- University / College.
+- Bootcamp / Intensive Training.
+- Online Courses.
+- Self-Directed Learning.
+- Other / Custom Education.
+
+Adapt the application's terminology to the selected type.
+
+## STEP 2 — FIELD OF STUDY
+
+Options:
+
+- Software Development.
+- Engineering.
+- Business Administration.
+- Design.
+- Languages.
+- Mathematics.
+- Health Sciences.
+- Science.
+- Arts.
+- Other.
+
+Allow custom entries.
+
+## STEP 3 — STUDY MODALITY
+
+Options:
+
+- In-person.
+- Online.
+- Hybrid.
+
+## STEP 4 — ACADEMIC PERIOD
+
+Adapt options:
+
+- School grade.
+- Semester.
+- Academic year.
+- Training module.
+- Course level.
+- Certification stage.
+- Custom academic period.
+
+## STEP 5 — LEARNING GOALS
+
+Ask:
+
+"What do you want to achieve with your studies?"
+
+Options:
+
+- Improve academic performance.
+- Learn programming.
+- Prepare for exams.
+- Develop technical skills.
+- Improve English.
+- Complete academic projects.
+- Become more organized.
+- Improve concentration.
+- Develop better study habits.
+- Prepare for professional opportunities.
+- Other.
+
+Allow custom goals.
+
+## STEP 6 — STUDY PREFERENCES
+
+Allow configuration of:
+
+- Preferred study days.
+- Available study hours.
+- Preferred study duration.
+- Morning, afternoon, or evening preferences.
+- Work schedules.
+- Personal commitments.
+- Preferred break intervals.
+
+## STEP 7 — ACADEMIC STRUCTURE
+
+Allow registration of:
+
+- Subjects.
+- Courses.
+- Modules.
+- Learning topics.
+
+Each item should contain:
+
+- Name.
+- Description.
+- Instructor.
+- Start date.
+- End date.
+- Weekly study hours.
+- Difficulty.
+- Objectives.
+- Personal progress.
+
+Save all information in Supabase.
+
+Allow profile editing at any time.
+
+Do not force predefined academic structures on students.
+
+---
+
+# 8. THE NEUROSTUDY ACADEMIC ENGINE
+
+Create a centralized application architecture called:
+
+**NEUROSTUDY ACADEMIC ENGINE**
+
+This is the most important engineering improvement in V4.
+
+It is not another user-facing page.
+
+It is the central coordination system that connects PLAN, THINK, FOCUS, EVOLVE, and the Supabase database.
+
+## 8.1 Main responsibilities
+
+The Academic Engine must coordinate:
+
+- Tasks.
+- Subjects.
+- Exams.
+- Exam preparation sessions.
+- Projects.
+- Study sessions.
+- Goals.
+- Knowledge topics.
+- Notifications.
+- Academic reports.
+- Recommendations.
+- Calendar events.
+- Academic history.
+
+## 8.2 Shared domain services
+
+Create reusable services with clearly separated responsibilities.
+
+Examples:
+
+`taskService.js`
+
+Manages creation, editing, deletion, completion, dependencies, and rescheduling.
+
+`calendarService.js`
+
+Combines tasks, exams, project milestones, and study sessions into one academic calendar.
+
+`academicService.js`
+
+Manages academic profiles, subjects, terms, and goals.
+
+`examPrepService.js`
+
+Manages exams, topics, preparation plans, and results.
+
+`focusService.js`
+
+Manages focus sessions, timers, and study history.
+
+`notificationService.js`
+
+Centralizes notification creation, scheduling, and preferences.
+
+`analyticsService.js`
+
+Calculates academic indicators using real saved information.
+
+`recommendationEngine.js`
+
+Creates transparent recommendations using real student data.
+
+`resourceService.js`
+
+Manages study library resources.
+
+`projectService.js`
+
+Manages academic projects and dependencies.
+
+## 8.3 Central activity coordination
+
+When an important action happens, update all relevant views.
+
+Example:
+
+When a student completes a JavaScript task:
+
+1. Update the task in Supabase.
+2. Register the relevant activity event.
+3. Update PLAN.
+4. Recalculate Dashboard information.
+5. Update weekly progress.
+6. Update relevant project progress.
+7. Update academic history.
+8. Recalculate workload.
+9. Update recommendations when relevant.
+
+Avoid duplicating database records or business logic.
+
+Use shared service functions and a consistent data-refresh strategy.
+
+Database persistence remains the source of truth.
+
+## 8.4 Event architecture
+
+Use meaningful domain events such as:
+
+- task.created.
+- task.updated.
+- task.completed.
+- task.rescheduled.
+- exam.created.
+- exam.updated.
+- study_session.completed.
+- quiz.completed.
+- project.milestone_completed.
+- goal.completed.
+
+Use these events to coordinate relevant UI updates, notifications, and analytics.
+
+Do not depend solely on browser custom events for persistent operations.
+
+Use Supabase for durable data and Realtime for synchronization.
+
+---
+
+# 9. FOUR MAIN PILLARS
+
+Organize NeuroStudy around four concepts.
+
+## PLAN — Academic Organization
+
+Subjects, schedules, projects, tasks, priorities, deadlines, weekly objectives, examinations, and academic capacity.
+
+## THINK — Cognitive Learning
+
+Memory exercises, attention challenges, logical reasoning, flashcards, knowledge maps, and spaced repetition.
+
+## FOCUS — Concentration Environment
+
+Pomodoro sessions, Neural Music, concentration tools, guided breaks, and study analytics.
+
+## EVOLVE — Personal Development
+
+Achievements, learning objectives, quizzes, challenges, academic performance, and personal progress.
+
+All four pillars must work together.
+
+---
+
+# 10. MULTI-PAGE APPLICATION NAVIGATION
+
+Create:
+
+1. index.html — Dashboard.
+2. planner.html — Academic Planner.
+3. think.html — Cognitive Learning.
+4. focus.html — Focus Environment.
+5. evolve.html — Progress and Challenges.
+6. exam-prep.html — Exam Preparation.
+7. library.html — Personal Study Library.
+8. projects.html — Project Workspace.
+9. onboarding.html — Academic Profile.
+10. login.html — Student Login.
+11. register.html — Student Registration.
+12. responsive-preview.html — Development Preview Lab.
+
+Normal student navigation:
+
+- Dashboard.
+- PLAN.
+- THINK.
+- FOCUS.
+- EVOLVE.
+- Profile / Settings.
+
+Exam Preparation, Library, and Project Workspace must be accessible from PLAN.
+
+Responsive Preview Lab must remain development-only.
+
+Use a consistent application shell across all student pages.
+
+---
+
+# 11. DASHBOARD
+
+Create an intelligent Dashboard personalized with Supabase data.
+
+## Welcome section
+
+Display:
+
+- Student name.
+- Education type.
+- Field of study.
+- Academic period.
+- Current local date.
+- Motivational message.
+
+## Today's overview
+
+Display:
+
+- Today's tasks.
+- Completed activities.
+- Pending assignments.
+- Upcoming deadlines.
+- Available study time.
+- Weekly progress.
+- Registered subjects.
+- Upcoming exams.
+- Project milestones.
+
+## Academic assistant
+
+Create:
+
+"YOUR ACADEMIC SITUATION TODAY."
+
+Example:
+
+"You have three pending assignments and one upcoming examination. You have approximately two hours available today. I recommend starting with your JavaScript exercises."
+
+Use actual stored information.
+
+## WHAT SHOULD I DO NOW?
+
+Create a prominent recommendation button.
+
+Analyze:
+
+- Pending tasks.
+- Due dates.
+- Scheduled work dates.
+- Estimated durations.
+- Priorities.
+- Dependencies.
+- Available time.
+- Academic commitments.
+- Examination requirements.
+
+Recommend the most appropriate next activity and explain why.
+
+## Quick Task Capture
+
+Provide a quick-add button accessible throughout the main application.
+
+Allow students to immediately enter a task title.
+
+After saving the quick entry, allow them to organize it into a subject, category, date, deadline, and priority.
+
+Save it in Supabase.
+
+## Dashboard components
+
+- Weekly mini-calendar.
+- Upcoming assignments.
+- Upcoming examinations.
+- Academic workload warnings.
+- Recent achievements.
+- Weekly objectives.
+- Focus-session summary.
+- Recommended activities.
+- Recent academic activity.
+
+Recognize the current date in the student's timezone.
+
+When the day changes, automatically update daily activities.
+
+Keep historical activities accessible.
+
+---
+
+# 12. PLAN — ACADEMIC ORGANIZATION
+
+## 12.1 Semester and Course Manager
+
+Allow students to organize:
+
+- Academic terms.
+- Semesters.
+- Courses.
+- Subjects.
+- Exams.
+- Projects.
+- Academic milestones.
+
+Display an overview of the complete academic period.
+
+## 12.2 Subject Management
+
+Allow:
+
+- Create.
+- Edit.
+- Delete.
+- Assign colors.
+- Add descriptions.
+- Register instructors.
+- Define objectives.
+- Set difficulty.
+- Track progress.
+
+Save subjects in Supabase.
+
+## 12.3 Dynamic Task Management
+
+Create:
+
+"+ ADD NEW TASK"
+
+Task form fields:
+
+- Title.
+- Description.
+- Subject.
+- Project (optional).
+- Scheduled work date.
+- Final delivery deadline.
+- Start time.
+- Estimated duration.
+- Priority.
+- Category.
+- Notes.
+- Optional recurring schedule.
+
+### Important date distinction
+
+Scheduled Work Date = when the student plans to work.
+
+Due Date = the final delivery deadline.
+
+Example:
+
+JavaScript assignment:
+
+- Scheduled date: Monday.
+- Due date: Friday.
+- Estimated duration: 90 minutes.
+
+Keep both dates separate.
+
+### Priorities
+
+- Low.
+- Medium.
+- High.
+- Urgent.
+
+### Task functionality
+
+Allow:
+
+- Create.
+- Edit.
+- Delete.
+- Complete.
+- Reschedule.
+- Duplicate.
+- Add notes.
+- View details.
+- Add subtasks.
+- View dependencies.
+
+Every operation must update Supabase.
+
+Confirm permanent deletion.
+
+## 12.4 Dynamic Calendar
+
+Provide:
+
+- Daily view.
+- Weekly view.
+- Monthly view.
+- Today button.
+- Previous and next navigation.
+- Upcoming tasks.
+- Completed tasks.
+- Overdue tasks.
+- Exam preparation sessions.
+- Project milestones.
+
+Display tasks on their scheduled dates and deadlines separately.
+
+On mobile, provide a readable daily agenda instead of forcing a seven-column desktop calendar into a narrow screen.
+
+## 12.5 Task persistence and synchronization
+
+Supabase must preserve tasks when:
+
+- Refreshing.
+- Closing and reopening the website.
+- Logging out and logging back in.
+- Changing devices.
+- Navigating between pages.
+- Changing weeks or months.
+- Rescheduling.
+
+When a task is created, update all relevant views.
+
+Use unique database IDs.
+
+Never create duplicate records for different modules.
+
+## 12.6 Schedule Conflict Detector
+
+Create an automatic scheduling validation system.
+
+Detect:
+
+- Two activities scheduled at the same time.
+- Tasks exceeding available working hours.
+- Exam study sessions overlapping with existing tasks.
+- Project milestones overlapping with important deadlines.
+- Study sessions scheduled outside availability.
+
+Example:
+
+JavaScript study session: Monday, 3 PM.
+
+Exam revision session: Monday, 3 PM.
+
+Display a conflict warning.
+
+Offer alternatives.
+
+Allow the student to:
+
+- Keep the existing schedule.
+- Move one activity.
+- Change its duration.
+- Reorganize the affected day.
+
+Never modify confirmed activities without approval.
+
+Check conflicts both when activities are created and when they are rescheduled.
+
+Distinguish hard conflicts from soft warnings.
+
+A hard conflict means two fixed activities cannot happen simultaneously.
+
+A soft warning means a day may be overloaded or inconvenient.
+
+## 12.7 Task Dependencies
+
+Create a feature called:
+
+**"TASK DEPENDENCIES."**
+
+Allow students to define relationships between activities.
+
+Example:
+
+Project: Create a website.
+
+1. Finish HTML structure.
+2. Complete CSS styling.
+3. Implement JavaScript.
+4. Test the website.
+
+The second task depends on the first, and so on.
+
+Display dependencies in a project or task timeline.
+
+Prevent circular dependencies.
+
+When a dependent task is blocked, display its waiting status.
+
+Allow students to see which task must be completed first.
+
+Do not automatically mark a task as completed because its dependency is finished.
+
+## 12.8 Academic Capacity Calculator
+
+Create:
+
+**"MY ACADEMIC CAPACITY."**
+
+Calculate available study time and compare it with planned activities.
+
+Example:
+
+Weekly availability: 10 hours.
+
+Planned activities: 14 hours.
+
+Estimated overload: 4 hours.
+
+Display:
+
+- Available weekly time.
+- Scheduled study time.
+- Remaining time.
+- Estimated overload.
+- Free study periods.
+
+Use registered work schedules, personal commitments, and study preferences.
+
+Include exam preparation sessions and project activities in calculations.
+
+If availability is missing, ask students to configure it.
+
+Do not assume that students have unlimited time.
+
+Use capacity warnings to suggest reasonable rescheduling.
+
+## 12.9 Smart Rescheduling
+
+Create:
+
+"REORGANIZE MY WEEK."
+
+Analyze:
+
+- Incomplete activities.
+- Deadlines.
+- Durations.
+- Available time.
+- Dependencies.
+- Work schedules.
+- Personal commitments.
+- Academic priorities.
+- Exam preparation.
+- Overloaded days.
+- Schedule conflicts.
+
+Generate a realistic proposal.
+
+Show a preview.
+
+Preserve task IDs and delivery deadlines.
+
+Require student approval.
+
+## 12.10 Student-Worker Mode
+
+Allow students to register working hours and personal commitments.
+
+Recommend study periods around these responsibilities.
+
+## 12.11 Available-Time Planner
+
+Create:
+
+"HOW MUCH TIME DO YOU HAVE TODAY?"
+
+Options:
+
+- 15 minutes.
+- 30 minutes.
+- 1 hour.
+- 2 hours.
+- Custom duration.
+
+Recommend activities that fit the selected time.
+
+Prioritize useful smaller activities when available time is limited.
+
+Do not overload the student.
+
+---
+
+# 13. THINK — COGNITIVE LEARNING
+
+Create an interactive learning environment.
+
+## Memory training
+
+Include:
+
+- Flashcards.
+- Word memorization.
+- Recall exercises.
+- Memory challenges.
+- Spaced repetition.
+- Performance tracking.
+
+Allow custom flashcards.
+
+## Attention exercises
+
+Include:
+
+- Pattern recognition.
+- Visual search.
+- Number sequences.
+- Concentration challenges.
+
+## Logical reasoning
+
+Include:
+
+- Programming logic.
+- Sequence completion.
+- Algorithm exercises.
+- Problem-solving.
+- Difficulty levels.
+
+## Knowledge map
+
+Create a visual representation of academic knowledge.
+
+Topic statuses:
+
+- Not started.
+- Learning.
+- Needs review.
+- Practiced.
+- Completed.
+
+Adapt the map to actual registered subjects.
+
+Save progress in Supabase.
+
+## Smart revision
+
+Implement spaced repetition.
+
+It must:
+
+- Register studied topics.
+- Suggest review dates.
+- Identify neglected topics.
+- Recommend quizzes.
+- Track revision history.
+- Update learning progress.
+
+## Learn From Your Mistakes
+
+When a student answers incorrectly:
+
+1. Identify the relevant topic.
+2. Save the result.
+3. Update practice history.
+4. Recommend revision.
+5. Offer another exercise.
+6. Track improvement.
+
+Do not claim knowledge mastery from a single quiz.
+
+These activities are educational tools, not medical treatments or guaranteed cognitive enhancement.
+
+---
+
+# 14. FOCUS — CONCENTRATION ENVIRONMENT AND NEURAL MUSIC
+
+Create a distraction-minimized study environment.
+
+## 14.1 Pomodoro Timer
+
+Include:
+
+- Start.
+- Pause.
+- Resume.
+- Reset.
+- Custom study intervals.
+- Custom break intervals.
+- Completed session tracking.
+- Optional notifications.
+
+Allow students to associate sessions with subjects, tasks, projects, or examination topics.
+
+Save completed sessions in Supabase.
+
+## 14.2 Neural Music
+
+Create a prominent button:
+
+**"NEURAL MUSIC"**
+
+Allow students to open an integrated concentration music player directly inside the website.
+
+### Music categories
+
+- Deep Focus.
+- Instrumental.
+- Ambient.
+- Lo-fi Study.
+- Nature Sounds.
+- White Noise.
+- Pink Noise.
+- Brown Noise.
+- Relaxing Sounds.
+- Brainwave-inspired soundscapes.
+
+Neural Music is the product's focus-music branding.
+
+Do not claim that specific frequencies guarantee concentration, increase intelligence, improve memory, or provide medical treatment.
+
+Present these sounds as optional background audio for the student's preferred study environment.
+
+### Player controls
+
+Implement:
+
+- Play.
+- Pause.
+- Next.
+- Previous.
+- Volume.
+- Track selection.
+- Category selection.
+- Repeat.
+- Current track information.
+- Optional sleep timer.
+- Stop playback.
+
+### Audio requirements
+
+Use:
+
+- Original compositions.
+- Properly licensed royalty-free music.
+- Properly licensed ambient recordings.
+- Authorized soundscapes.
+
+Create:
+
+`assets/audio/`
+
+Organize tracks by category.
+
+Provide a track manifest with:
+
+- Track ID.
+- Title.
+- Category.
+- Audio path.
+- Duration.
+- Attribution or licensing information.
+
+Use the HTML audio element.
+
+Playback must start only after the student explicitly presses Play.
+
+Never autoplay when opening the website.
+
+Display loading, empty, and error states.
+
+Do not use copyrighted music without permission.
+
+Support mobile browsers and touch controls.
+
+Avoid duplicate audio playback across pages.
+
+Allow the student to pause or stop audio easily.
+
+Neural Music must be optional and independent of the Pomodoro timer.
+
+## 14.3 Guided Study Breaks
+
+Include:
+
+- Animated breathing exercises.
+- Optional stretch reminders.
+- Relaxation intervals.
+- Reflection prompts.
+- Break countdowns.
+
+## 14.4 Focus Session Management
+
+Allow students to:
+
+- Start a session.
+- Select a subject.
+- Associate the session with a task or exam session.
+- Select duration.
+- Pause and resume.
+- Complete the session.
+- Record a concentration rating.
+
+Save sessions in Supabase.
+
+## 14.5 Focus Analytics
+
+Display:
+
+- Total study minutes.
+- Completed sessions.
+- Daily study time.
+- Weekly trends.
+- Concentration ratings.
+- Time spent per subject.
+
+Use real saved data.
+
+---
+
+# 15. EVOLVE — PERSONAL DEVELOPMENT
+
+Create a personal academic development center.
+
+## Weekly challenges
+
+Examples:
+
+- Complete five study sessions.
+- Finish three assignments.
+- Review two difficult topics.
+- Complete two quizzes.
+- Reach a weekly objective.
+- Complete a personal learning goal.
+
+Generate suggestions from the student's academic profile.
+
+Allow custom challenges.
+
+## Interactive quizzes
+
+Include:
+
+- HTML and CSS.
+- JavaScript.
+- Programming logic.
+- English vocabulary.
+- Mathematics.
+- General academic skills.
+
+Functionality:
+
+- Multiple choice.
+- Immediate feedback.
+- Explanations.
+- Score calculation.
+- Difficulty levels.
+- Retry.
+- Quiz history.
+- Progress tracking.
+
+Save results in Supabase.
+
+## Gamification
+
+Include:
+
+- Experience points.
+- Achievement badges.
+- Personal levels.
+- Challenge animations.
+- Weekly milestones.
+
+Do not punish students for missing a day or taking breaks.
+
+## Academic analytics
+
+Display:
+
+- Completed tasks.
+- Pending assignments.
+- Weekly study hours.
+- Goal completion rates.
+- Subject progress.
+- Quiz scores.
+- Study history.
+- Productivity patterns.
+- Exam preparation progress.
+- Project milestones.
+
+Use Chart.js and real information.
+
+## Academic history
+
+Create:
+
+"MY ACADEMIC HISTORY."
+
+Allow review of:
+
+- Previous activities.
+- Completed tasks.
+- Unfinished activities.
+- Past deadlines.
+- Weekly objectives.
+- Focus sessions.
+- Quiz results.
+- Exam results.
+- Achievements.
+- Weekly reflections.
+- Project milestones.
+
+Include filters for date, subject, category, and status.
+
+---
+
+# 16. EXAM PREPARATION MODE
+
+Create a complete academic examination preparation workspace.
+
+Connect it to PLAN, THINK, FOCUS, EVOLVE, and Supabase.
+
+## 16.1 Exam registration
+
+Create:
+
+"+ REGISTER NEW EXAM"
+
+Fields:
+
+- Exam title.
+- Subject.
+- Description.
+- Exam type.
+- Examination date.
+- Examination time.
+- Importance.
+- Estimated preparation time.
+- Additional instructions.
+
+Types:
+
+- Written.
+- Multiple-choice.
+- Practical.
+- Oral.
+- Programming challenge.
+- Certification.
+- Final project evaluation.
+- Other.
+
+Importance:
+
+- Low.
+- Medium.
+- High.
+- Critical.
+
+Allow editing and cancellation.
+
+## 16.2 Exam Dashboard
+
+Display:
+
+- Upcoming examinations.
+- Days remaining.
+- Preparation percentage.
+- Topics reviewed.
+- Topics needing attention.
+- Planned study sessions.
+- Completed revision sessions.
+
+Filters:
+
+- All.
+- Upcoming.
+- In preparation.
+- Completed.
+- Cancelled.
+
+## 16.3 Topic breakdown
+
+Example: JavaScript Fundamentals.
+
+Topics:
+
+1. Variables and data types.
+2. Conditional statements.
+3. Loops.
+4. Arrays.
+5. Functions.
+6. Objects.
+7. DOM manipulation.
+
+Each topic includes:
+
+- Name.
+- Description.
+- Difficulty.
+- Importance.
+- Estimated duration.
+- Understanding level.
+- Preparation status.
+- Notes.
+- Last reviewed date.
+
+Understanding levels:
+
+1. I do not understand this yet.
+2. I understand very little.
+3. I understand the basics.
+4. I understand it fairly well.
+5. I can explain and apply it confidently.
+
+Preparation statuses:
+
+- Not started.
+- Learning.
+- Needs review.
+- Practiced.
+- Ready.
+
+Allow creation, editing, deletion, and reordering.
+
+## 16.4 Generate My Study Plan
+
+Analyze:
+
+- Exam date.
+- Days remaining.
+- Registered topics.
+- Difficulty.
+- Importance.
+- Understanding.
+- Estimated duration.
+- Available time.
+- Work schedules.
+- Personal commitments.
+- Existing task dependencies.
+- Academic capacity.
+
+Generate a realistic proposal.
+
+Prioritize important, difficult, and less familiar topics.
+
+Distribute learning, practice, and revision across available days.
+
+Do not schedule sessions after the examination date.
+
+Never overload the student.
+
+Always show a preview before applying changes.
+
+Explain when preparation time is insufficient.
+
+## 16.5 Exam preparation roadmap
+
+Four stages:
+
+UNDERSTAND — Identify topics and initial knowledge.
+
+LEARN — Study unfamiliar and difficult topics.
+
+PRACTICE — Complete exercises and quizzes.
+
+REVIEW — Revisit weak topics and complete a mock exam.
+
+Display progress across all four stages.
+
+## 16.6 Topic confidence
+
+Allow self-reported confidence ratings from 1 to 5.
+
+Display separately:
+
+- Initial confidence.
+- Latest confidence.
+- Latest practice score.
+- Revision history.
+
+Do not confuse self-reported understanding with measured quiz performance.
+
+Connect results to THINK.
+
+## 16.7 Practice challenges
+
+Include:
+
+- Multiple-choice.
+- True or false.
+- Short answers.
+- Programming exercises.
+- Difficulty levels.
+
+Associate questions with examinations and topics.
+
+Provide feedback and explanations.
+
+Use curated questions or locally supplied educational material.
+
+Do not claim to reproduce official exam questions.
+
+## 16.8 Mock Exam
+
+Create:
+
+"START MOCK EXAM."
+
+Configure:
+
+- Exam.
+- Number of questions.
+- Topics.
+- Difficulty.
+- Time limit.
+- Optional passing target.
+
+During the exam:
+
+- Display questions.
+- Show remaining time.
+- Allow navigation.
+- Record answers.
+- Allow review of unanswered questions.
+- Confirm final submission.
+
+After submission, show:
+
+- Final score.
+- Correct answers.
+- Incorrect answers.
+- Topic performance.
+- Revision recommendations.
+- Previous attempt comparisons.
+
+Save results in Supabase.
+
+Keep mock results separate from official grades.
+
+## 16.9 PLAN integration
+
+Approved study plans must:
+
+- Save sessions in Supabase.
+- Appear in the academic calendar.
+- Affect workload detection.
+- Appear on the Dashboard.
+- Allow rescheduling.
+- Preserve completed sessions.
+
+Do not duplicate ordinary tasks.
+
+## 16.10 FOCUS integration
+
+Launch Pomodoro sessions from examination activities.
+
+Associate sessions with the exam, topic, and scheduled study session.
+
+Save actual completed sessions without duplicating scheduled records.
+
+## 16.11 EVOLVE integration
+
+Display:
+
+- Exams registered.
+- Upcoming exams.
+- Completed preparation plans.
+- Topic confidence.
+- Topics requiring attention.
+- Mock exam history.
+- Revision completion.
+- Estimated readiness.
+
+Readiness must be a transparent estimate, never a guarantee of exam results.
+
+## 16.12 Results and reflections
+
+Allow students to record:
+
+- Obtained grade.
+- Grading scale.
+- Instructor feedback.
+- Difficult topics.
+- Successful topics.
+- Personal reflections.
+
+Support 0–5, 0–10, 0–100, letter grades, Pass/Fail, and custom scales.
+
+Save information in Supabase.
+
+---
+
+# 17. PERSONAL STUDY LIBRARY
+
+Create:
+
+library.html
+
+Allow students to organize study materials.
+
+Support:
+
+- PDF files.
+- Documents.
+- Images.
+- Personal notes.
+- External links.
+- Learning resources.
+- Reference materials.
+
+Organize materials by:
+
+- Subject.
+- Academic period.
+- Project.
+- Exam.
+- Topic.
+- Custom tags.
+
+Include:
+
+- Search.
+- Filtering.
+- File preview where supported.
+- File descriptions.
+- Resource editing.
+- Deletion.
+- Upload progress.
+- Storage information.
+
+Use private Supabase Storage buckets with appropriate access policies.
+
+Every resource must belong to its authenticated student.
+
+Connect study materials to tasks, projects, and exam topics.
+
+Do not expose private uploaded files publicly.
+
+---
+
+# 18. PROJECT WORKSPACE
+
+Create:
+
+projects.html
+
+Allow students to create individual academic projects.
+
+Each project should include:
+
+- Title.
+- Description.
+- Subject.
+- Start date.
+- Final deadline.
+- Progress.
+- Status.
+- Milestones.
+- Tasks.
+- Subtasks.
+- Dependencies.
+- Notes.
+- Resources.
+
+Example:
+
+Project: Develop a website.
+
+Milestones:
+
+1. Define project requirements.
+2. Create HTML structure.
+3. Develop CSS styling.
+4. Implement JavaScript.
+5. Test functionality.
+6. Complete final review.
+
+Display project progress visually.
+
+Connect project tasks with PLAN and the academic calendar.
+
+When a project milestone is completed, update relevant progress indicators.
+
+Avoid duplicating task records.
+
+---
+
+# 19. ADDITIONAL PRODUCT FEATURES
+
+Integrate the following features throughout NeuroStudy.
+
+## 19.1 Grade and Evaluation Tracker
+
+Allow students to register:
+
+- Evaluation names.
+- Scores.
+- Grading scales.
+- Evaluation weights.
+- Dates.
+- Project results.
+- Examination results.
+
+Calculate weighted averages when sufficient information exists.
+
+Allow customizable grading systems.
+
+Clearly distinguish official grades from estimated results.
+
+## 19.2 Assignment Breakdown Assistant
+
+Allow students to enter assignment instructions.
+
+Help divide them into:
+
+- Requirements.
+- Individual activities.
+- Deadlines.
+- Resources.
+- Completion criteria.
+
+For the initial version, support manual task breakdown.
+
+Future AI functionality may use a secure backend.
+
+## 19.3 Study Session Journal
+
+After a study session, ask:
+
+- What did you accomplish?
+- What was difficult?
+- What should you review next?
+
+Save reflections in Supabase.
+
+Associate journal entries with subjects, tasks, and study sessions.
+
+## 19.4 Academic Milestone Timeline
+
+Display important moments:
+
+- First completed project.
+- First successful mock examination.
+- Completed learning path.
+- Academic objectives achieved.
+- Completed semester.
+- Personal learning milestones.
+
+Generate milestone records from actual academic events.
+
+## 19.5 Global Search and Command Center
+
+Create a global search interface accessible throughout the application.
+
+Search:
+
+- Tasks.
+- Subjects.
+- Exams.
+- Projects.
+- Resources.
+- Goals.
+- Learning topics.
+
+Include quick commands:
+
+- Create task.
+- Register exam.
+- Add subject.
+- Start focus session.
+- Open planner.
+- Search study resources.
+
+Use keyboard shortcuts where appropriate.
+
+Make the command center fully usable on mobile.
+
+## 19.6 Central Notification Engine
+
+Create one notification service shared across all modules.
+
+Manage notifications for:
+
+- Upcoming deadlines.
+- Exams.
+- Unfinished tasks.
+- Revision sessions.
+- Schedule conflicts.
+- Project milestones.
+- Study appointments.
+
+Allow students to customize notification preferences.
+
+Include in-app notification history.
+
+Browser notifications must be optional and require explicit permission.
+
+Do not send excessive or repetitive reminders.
+
+## 19.7 Weekly Academic Report
+
+Generate weekly reports using actual saved data.
+
+Include:
+
+- Completed tasks.
+- Postponed activities.
+- Study sessions.
+- Study hours.
+- Quiz results.
+- Goals achieved.
+- Topics requiring review.
+- Upcoming responsibilities.
+- Exam preparation progress.
+
+## 19.8 Personalized Interface and Accessibility
+
+Allow students to customize:
+
+- Font size.
+- Interface density.
+- Reduced animations.
+- Contrast.
+- Calendar view.
+- Dashboard widgets.
+- Theme preferences.
+- Simplified interface mode.
+
+Respect reduced-motion settings.
+
+Maintain NeuroStudy's core visual identity.
+
+## 19.9 Installable Web Application
+
+Prepare NeuroStudy as a Progressive Web App.
+
+Include:
+
+- manifest.webmanifest.
+- Application icons.
+- Service worker.
+- Installation support.
+- App-like launch experience.
+- Static offline fallback.
+
+Cache static application files.
+
+Do not accidentally cache private academic data in shared browser caches.
+
+Clearly communicate offline limitations.
+
+## 19.10 External Calendar Export
+
+Allow export of:
+
+- Tasks.
+- Exams.
+- Project deadlines.
+- Scheduled study sessions.
+
+Use the .ics calendar format initially.
+
+Future two-way calendar synchronization may be integrated through authorized provider connections.
+
+Do not claim that two-way synchronization exists until implemented.
+
+## 19.11 Personal Data Control Center
+
+Allow students to:
+
+- Edit their academic profile.
+- Manage preferences.
+- Review active account sessions.
+- Export personal data.
+- Delete their account.
+- Review stored information.
+- Manage notification permissions.
+
+Sensitive account deletion must use trusted backend operations.
+
+Never expose privileged Supabase credentials.
+
+---
+
+# 20. ACADEMIC CAPACITY CALCULATOR
+
+Create a central feature called:
+
+"MY ACADEMIC CAPACITY."
+
+Its purpose is to calculate whether the student's academic workload is realistic.
+
+Analyze:
+
+- Available study hours.
+- Work hours.
+- Personal commitments.
+- Scheduled tasks.
+- Exam preparation sessions.
+- Project activities.
+- Focus sessions.
+- Break periods.
+
+Example:
+
+Available study time: 10 hours.
+
+Planned activities: 14 hours.
+
+Overload: 4 hours.
+
+Display:
+
+- Weekly capacity.
+- Scheduled workload.
+- Remaining time.
+- Overload indicators.
+- Available study periods.
+
+Include capacity information in:
+
+- Dashboard.
+- PLAN.
+- Exam Preparation.
+- Academic Assistant.
+
+Update calculations when schedules change.
+
+Do not assume the student can study during unavailable periods.
+
+Avoid automatically moving existing activities.
+
+Require approval for proposed rescheduling.
+
+---
+
+# 21. CENTRALIZED RECOMMENDATION ENGINE
+
+Create a central academic assistant accessible from the Dashboard.
+
+Initially implement a transparent rule-based recommendation engine using actual Supabase data.
+
+It must consider:
+
+- Education type.
+- Field of study.
+- Academic period.
+- Learning goals.
+- Subjects.
+- Tasks.
+- Due dates.
+- Dependencies.
+- Study preferences.
+- Available time.
+- Academic capacity.
+- Exams.
+- Topic confidence.
+- Focus history.
+- Project milestones.
+- Quiz results.
+- Learning roadmaps.
+
+It should:
+
+- Recommend the next activity.
+- Identify approaching deadlines.
+- Detect overload.
+- Detect schedule conflicts.
+- Suggest study sessions.
+- Recommend revision.
+- Break down assignments.
+- Create recovery proposals.
+- Connect daily activities to long-term goals.
+- Recommend examination preparation activities.
+
+Every recommendation must explain its reasoning.
+
+Example:
+
+"Your JavaScript assignment is due tomorrow and requires approximately 90 minutes. You have two hours available today. Completing it first will help prevent a deadline conflict."
+
+Do not claim actual AI capabilities unless a real AI model is connected.
+
+Future AI integration must use secure backend infrastructure or Supabase Edge Functions.
+
+Never expose AI API keys in frontend JavaScript.
+
+---
+
+# 22. SUPABASE DATABASE ARCHITECTURE
+
+Extend the database through modular SQL migrations.
+
+Do not recreate existing tables unnecessarily.
+
+All student-owned records must be associated with the authenticated user's UUID.
+
+Use appropriate composite foreign keys and ownership constraints.
+
+## Core profile and academic tables
+
+### profiles
+
+- id UUID PRIMARY KEY REFERENCES auth.users(id).
+- full_name.
+- education_type.
+- field_of_study.
+- study_modality.
+- academic_period.
+- onboarding_completed.
+- timezone.
+- avatar_url.
+- created_at.
+- updated_at.
+
+### academic_terms
+
+- id.
+- user_id.
+- name.
+- start_date.
+- end_date.
+- status.
+- created_at.
+
+### subjects
+
+- id.
+- user_id.
+- academic_term_id.
+- name.
+- description.
+- instructor.
+- difficulty.
+- color.
+- start_date.
+- end_date.
+- weekly_study_hours.
+- progress.
+- created_at.
+- updated_at.
+
+## Task and project tables
+
+### tasks
+
+- id.
+- user_id.
+- subject_id.
+- project_id nullable.
+- title.
+- description.
+- scheduled_date.
+- due_date.
+- start_time.
+- estimated_duration.
+- priority.
+- status.
+- notes.
+- completed_at.
+- created_at.
+- updated_at.
+
+Use DATE fields for scheduled_date and due_date.
+
+Keep the dates separate.
+
+### task_subtasks
+
+- id.
+- user_id.
+- task_id.
+- title.
+- completed.
+- created_at.
+- updated_at.
+
+### task_dependencies
+
+- id.
+- user_id.
+- task_id.
+- depends_on_task_id.
+- created_at.
+
+Prevent circular dependencies and ensure both linked tasks belong to the same user.
+
+### task_events
+
+- id.
+- user_id.
+- task_id.
+- event_type.
+- previous_values JSONB.
+- new_values JSONB.
+- created_at.
+
+### projects
+
+- id.
+- user_id.
+- subject_id.
+- title.
+- description.
+- status.
+- start_date.
+- due_date.
+- progress.
+- created_at.
+- updated_at.
+
+### project_milestones
+
+- id.
+- user_id.
+- project_id.
+- title.
+- description.
+- due_date.
+- completed.
+- position.
+
+## Goal and preference tables
+
+### learning_goals
+
+- id.
+- user_id.
+- title.
+- description.
+- target_date.
+- status.
+- created_at.
+- updated_at.
+
+### weekly_goals
+
+- id.
+- user_id.
+- title.
+- description.
+- start_date.
+- end_date.
+- status.
+- created_at.
+
+### goal_objectives
+
+- id.
+- user_id.
+- goal_id.
+- title.
+- completed.
+- created_at.
+
+### study_preferences
+
+- id.
+- user_id.
+- preferred_days.
+- available_hours.
+- preferred_periods.
+- preferred_session_duration.
+- break_duration.
+- updated_at.
+
+## Study and knowledge tables
+
+### study_sessions
+
+- id.
+- user_id.
+- subject_id.
+- task_id.
+- exam_study_session_id nullable.
+- duration.
+- session_type.
+- concentration_rating.
+- completed_at.
+
+### study_journal
+
+- id.
+- user_id.
+- subject_id.
+- task_id.
+- study_session_id.
+- achievements.
+- difficulties.
+- next_steps.
+- created_at.
+
+### knowledge_topics
+
+- id.
+- user_id.
+- subject_id.
+- title.
+- description.
+- learning_status.
+- last_reviewed_at.
+- next_review_at.
+
+### flashcards
+
+- id.
+- user_id.
+- subject_id.
+- question.
+- answer.
+- next_review_at.
+- review_count.
+- created_at.
+
+## Assessment tables
+
+### quiz_results
+
+- id.
+- user_id.
+- subject_id.
+- exam_id nullable.
+- quiz_category.
+- score.
+- total_questions.
+- difficulty.
+- completed_at.
+
+### grade_entries
+
+- id.
+- user_id.
+- subject_id.
+- evaluation_name.
+- score.
+- grading_scale.
+- weight_percentage.
+- evaluation_date.
+- created_at.
+
+### exams
+
+- id.
+- user_id.
+- subject_id.
+- title.
+- description.
+- exam_type.
+- exam_date.
+- exam_time.
+- importance.
+- status.
+- estimated_preparation_minutes.
+- created_at.
+- updated_at.
+- completed_at.
+
+### exam_topics
+
+- id.
+- user_id.
+- exam_id.
+- title.
+- description.
+- difficulty.
+- importance.
+- confidence_level.
+- estimated_minutes.
+- preparation_status.
+- last_reviewed_at.
+- position.
+
+### exam_study_sessions
+
+- id.
+- user_id.
+- exam_id.
+- topic_id.
+- scheduled_date.
+- start_time.
+- duration_minutes.
+- session_type.
+- status.
+- notes.
+- created_at.
+- updated_at.
+- completed_at.
+
+### exam_results
+
+- id.
+- user_id.
+- exam_id.
+- result_value.
+- result_scale.
+- result_label.
+- instructor_feedback.
+- personal_reflection.
+- completed_at.
+- created_at.
+
+### mock_exam_attempts
+
+- id.
+- user_id.
+- exam_id.
+- score.
+- total_questions.
+- answers JSONB.
+- duration_seconds.
+- completed_at.
+
+## Library and challenge tables
+
+### library_resources
+
+- id.
+- user_id.
+- subject_id.
+- title.
+- description.
+- resource_type.
+- storage_path.
+- external_url.
+- tags.
+- created_at.
+
+### challenges
+
+- id.
+- title.
+- description.
+- category.
+- difficulty.
+- points.
+
+### user_challenge_progress
+
+- id.
+- user_id.
+- challenge_id.
+- progress.
+- completed.
+- completed_at.
+
+### learning_paths
+
+- id.
+- user_id.
+- title.
+- description.
+- target_date.
+- progress.
+- created_at.
+
+### learning_milestones
+
+- id.
+- user_id.
+- learning_path_id.
+- title.
+- description.
+- completed.
+- position.
+
+## Notification and reporting tables
+
+### reminders
+
+- id.
+- user_id.
+- related_type.
+- related_id.
+- reminder_type.
+- remind_at.
+- status.
+- created_at.
+
+### notifications
+
+- id.
+- user_id.
+- title.
+- message.
+- notification_type.
+- related_type.
+- related_id.
+- read_at.
+- created_at.
+
+### notification_preferences
+
+- id.
+- user_id.
+- email_enabled.
+- browser_notifications_enabled.
+- reminder_preferences JSONB.
+- updated_at.
+
+### weekly_reflections
+
+- id.
+- user_id.
+- week_start.
+- achievements.
+- difficulties.
+- improvements.
+- created_at.
+
+### academic_milestones
+
+- id.
+- user_id.
+- milestone_type.
+- title.
+- description.
+- related_type.
+- related_id.
+- achieved_at.
+
+### account_preferences
+
+- id.
+- user_id.
+- font_size.
+- interface_density.
+- reduced_motion.
+- high_contrast.
+- simplified_mode.
+- theme_preferences JSONB.
+- updated_at.
+
+### Database requirements
+
+Use:
+
+- UUID primary keys.
+- Foreign keys.
+- Composite ownership constraints.
+- Appropriate indexes.
+- Unique constraints.
+- Correct date and timestamp types.
+- Updated-at triggers.
+- Referential integrity.
+- SQL migrations.
+
+Avoid duplicating records when connecting regular tasks, project activities, exam study sessions, and completed focus sessions.
+
+The track catalog can remain a local licensed asset manifest initially; audio playback does not need to become a student academic database table.
+
+---
+
+# 23. SUPABASE SECURITY AND ROW LEVEL SECURITY
+
+Enable RLS on every exposed student-data table.
+
+Use auth.uid() to enforce ownership.
+
+For every user-owned table:
+
+- SELECT: Only the authenticated owner.
+- INSERT: Only the authenticated owner.
+- UPDATE: Only the authenticated owner.
+- DELETE: Only the authenticated owner.
+
+Use authenticated roles in policies.
+
+Ensure:
+
+- Tasks cannot reference another student's subjects.
+- Projects cannot reference another student's subjects.
+- Task dependencies cannot connect another student's tasks.
+- Exam topics cannot reference another student's exams.
+- Exam sessions cannot reference another student's examinations.
+- Quiz results cannot reference another student's exams.
+- Study sessions cannot reference another student's tasks.
+- Library resources cannot reference another student's files.
+
+Allow authenticated students to read shared challenge catalog entries without granting unrestricted editing.
+
+Revoke unnecessary anonymous access.
+
+Do not rely exclusively on frontend validation.
+
+All permissions must be enforced by PostgreSQL.
+
+Never expose service_role or secret keys.
+
+Test with at least two separate student accounts.
+
+---
+
+# 24. SUPABASE REALTIME SYNCHRONIZATION
+
+Prioritize real-time updates for:
+
+- Tasks.
+- Subjects.
+- Weekly goals.
+- Goal objectives.
+- Study sessions.
+- Challenge progress.
+- Exams.
+- Exam topics.
+- Exam sessions.
+- Projects.
+- Notifications.
+
+When students change information in one active session, relevant information should update in other active sessions.
+
+Use authenticated, user-scoped channels.
+
+Manage subscriptions correctly and unsubscribe when no longer required.
+
+After real-time changes, reconcile the affected views using shared application services.
+
+Do not depend on Realtime as the only mechanism for initial data loading.
+
+---
+
+# 25. DATE, TIME AND CALENDAR ACCURACY
+
+Use the student's configured timezone.
+
+Initially detect the browser timezone and allow customization.
+
+Store:
+
+- Calendar dates as DATE.
+- Exact times as TIME where appropriate.
+- Event timestamps as TIMESTAMPTZ.
+
+Avoid UTC conversion errors with date-only values.
+
+The application must:
+
+1. Detect the current date.
+2. Update daily activities.
+3. Update overdue calculations.
+4. Preserve historical activities.
+5. Refresh when the browser becomes active.
+6. Update at local midnight when the application remains open.
+
+A task becomes overdue only when its actual due date has passed in the student's local timezone and it remains incomplete.
+
+Do not remove historical tasks or completed sessions.
+
+The unified calendar must show tasks, examinations, exam sessions, project milestones, and scheduled study sessions without treating them as duplicate records.
+
+---
+
+# 26. CENTRAL NOTIFICATION AND REMINDER ENGINE
+
+Create one notification service shared by all application modules.
+
+Notification events should include:
+
+- Upcoming deadlines.
+- Upcoming exams.
+- Unfinished tasks.
+- Scheduled revision.
+- Schedule conflicts.
+- Project milestones.
+- Weekly goals.
+- Study appointments.
+
+Allow students to customize notification types and timing.
+
+Include:
+
+- In-app notification center.
+- Read and unread states.
+- Notification history.
+- Clear notification actions.
+- Optional browser notifications.
+
+Browser notifications must only be enabled after explicit user permission.
+
+Do not send repetitive or excessive reminders.
+
+The reminder service must use the student's timezone.
+
+---
+
+# 27. DATA CONSISTENCY, OFFLINE HANDLING AND ERROR MANAGEMENT
+
+Supabase is the single source of truth for permanent academic data.
+
+Implement:
+
+- Loading indicators.
+- Success messages.
+- Error messages.
+- Empty states.
+- Retry mechanisms.
+- Form validation.
+- Duplicate prevention.
+- Connection status.
+- Unsaved-change indicators.
+
+When offline:
+
+- Inform the student.
+- Do not pretend data has been saved.
+- Preserve unsaved drafts.
+- Provide a safe retry mechanism.
+- Distinguish saved data from pending data.
+
+An optional IndexedDB write queue may be implemented with explicit conflict detection and resolution.
+
+Do not silently overwrite newer cloud data.
+
+Use idempotent operations where appropriate to prevent duplicate tasks and records.
+
+---
+
+# 28. PERSONAL DATA CONTROL CENTER
+
+Create a Settings area where students can:
+
+- Edit their profile.
+- Update education type.
+- Change academic periods.
+- Manage subjects.
+- Manage preferences.
+- Review active account sessions.
+- Export academic information.
+- Review account information.
+- Delete their account.
+- Manage notification permissions.
+
+Account deletion must use secure backend operations.
+
+Never expose privileged database credentials.
+
+Before deletion, explain which information will be permanently removed.
+
+---
+
+# 29. PROGRESSIVE WEB APPLICATION
+
+Prepare NeuroStudy as an installable PWA.
+
+Include:
+
+- manifest.webmanifest.
+- Application icons.
+- Service worker.
+- Installation support.
+- App-like launch experience.
+- Static offline fallback.
+
+Cache static application files.
+
+Do not accidentally cache private academic data in shared browser caches.
+
+Explain offline limitations.
+
+---
+
+# 30. EXTERNAL CALENDAR EXPORT
+
+Allow students to export:
+
+- Tasks.
+- Exams.
+- Project deadlines.
+- Scheduled study activities.
+
+Use the .ics format initially.
+
+Future two-way synchronization may be integrated through authorized calendar providers.
+
+Do not claim two-way synchronization exists until implemented and tested.
+
+---
+
+# 31. PROJECT STRUCTURE
+
+Use the following architecture:
+
+neurostudy/
+
+├── index.html
+├── login.html
+├── register.html
+├── onboarding.html
+├── planner.html
+├── think.html
+├── focus.html
+├── evolve.html
+├── exam-prep.html
+├── library.html
+├── projects.html
+├── responsive-preview.html
+│
+├── css/
+│   ├── style.css
+│   ├── dashboard.css
+│   ├── auth.css
+│   ├── onboarding.css
+│   ├── planner.css
+│   ├── think.css
+│   ├── focus.css
+│   ├── evolve.css
+│   ├── exam-prep.css
+│   ├── library.css
+│   ├── projects.css
+│   ├── responsive.css
+│   └── preview.css
+│
+├── js/
+│   ├── supabaseClient.js
+│   ├── auth.js
+│   ├── app.js
+│   ├── profile.js
+│   ├── onboarding.js
+│   ├── dashboard.js
+│   ├── planner.js
+│   ├── think.js
+│   ├── focus.js
+│   ├── evolve.js
+│   ├── examPrep.js
+│   ├── library.js
+│   ├── projects.js
+│   ├── assistant.js
+│   ├── realtime.js
+│   ├── responsivePreview.js
+│   │
+│   ├── services/
+│   │   ├── academicService.js
+│   │   ├── taskService.js
+│   │   ├── calendarService.js
+│   │   ├── examPrepService.js
+│   │   ├── focusService.js
+│   │   ├── projectService.js
+│   │   ├── resourceService.js
+│   │   ├── notificationService.js
+│   │   ├── analyticsService.js
+│   │   ├── recommendationEngine.js
+│   │   └── gradeService.js
+│   │
+│   ├── utils/
+│   │   ├── dateUtils.js
+│   │   ├── validation.js
+│   │   └── storageUtils.js
+│   │
+│   └── audioPlayer.js
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── audio/
+│       ├── instrumental/
+│       ├── ambient/
+│       ├── nature/
+│       ├── white-noise/
+│       └── track-manifest.json
+│
+├── public/
+│   ├── icons/
+│   └── manifest.webmanifest
+│
+├── supabase/
+│   ├── config.toml
+│   ├── migrations/
+│   ├── tests/
+│   └── seed.sql
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+│
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── vite.config.js
+└── README.md
+
+Avoid duplicate files and responsibilities.
+
+Keep shared services reusable.
+
+---
+
+# 32. AUTOMATED TESTING AND ENGINEERING QUALITY
+
+Introduce a proper testing strategy.
+
+Use Vitest for unit tests and Playwright for browser and end-to-end tests.
+
+## 32.1 Unit tests
+
+Test:
+
+- Date calculations.
+- Task status logic.
+- Overdue detection.
+- Workload calculations.
+- Task dependency validation.
+- Schedule conflict detection.
+- Exam preparation prioritization.
+- Progress calculations.
+- Grade calculations.
+- Recommendation logic.
+
+## 32.2 Integration tests
+
+Test:
+
+- Task creation and updates through Supabase.
+- Subject ownership.
+- Exam registration.
+- Project dependencies.
+- Study session relationships.
+- Notification creation.
+- Academic history.
+- RLS permissions.
+- Supabase Realtime integration.
+
+## 32.3 End-to-end tests
+
+Simulate real student workflows:
+
+1. Register a new account.
+2. Complete onboarding.
+3. Create an academic subject.
+4. Create a task.
+5. Schedule an examination.
+6. Generate an exam preparation plan.
+7. Complete a study session.
+8. Complete a quiz.
+9. Review academic progress.
+10. Log out and log back in.
+11. Verify saved information.
+
+## 32.4 Responsive automated testing
+
+Use Playwright viewport configurations to inspect:
+
+- 320px mobile.
+- 390px mobile.
+- 768px tablet.
+- 1024px tablet.
+- 1366px desktop.
+- 1920px desktop.
+
+Test important application workflows at narrow and wide widths.
+
+Use automated screenshots where helpful.
+
+Do not rely exclusively on automated visual tests.
+
+Verify actual layout and touch interactions on physical devices.
+
+## 32.5 Security testing
+
+Verify:
+
+- Students can access their own information.
+- Students cannot access another student's records.
+- Anonymous users cannot read private information.
+- Unauthorized updates are rejected.
+- Foreign-key ownership rules work.
+- Secret keys are not present in frontend bundles.
+- File access follows Storage policies.
+
+## 32.6 Quality requirements
+
+Use:
+
+- Clear module responsibilities.
+- Reusable functions.
+- Consistent naming.
+- Error boundaries at appropriate application-service layers.
+- Input validation.
+- Safe asynchronous operations.
+- Loading states.
+- Structured error reporting.
+
+Avoid unnecessary dependencies.
+
+Do not add complex infrastructure without a clear requirement.
+
+---
+
+# 33. FUNCTIONAL TESTING CHECKLIST
+
+Before delivery, verify all sections.
+
+### Authentication and onboarding
+
+1. Registration works.
+2. Login works.
+3. Logout works.
+4. Email verification works.
+5. Password recovery works.
+6. Sessions persist.
+7. Protected pages work.
+8. Academic onboarding works.
+9. Custom education types work.
+10. Profile editing works.
+
+### PLAN and task management
+
+11. Subjects can be created and edited.
+12. Tasks can be created and deleted.
+13. Scheduled dates and deadlines remain separate.
+14. Calendar updates automatically.
+15. Historical tasks remain accessible.
+16. Overdue tasks are identified correctly.
+17. Rescheduling works.
+18. Task dependencies work.
+19. Circular dependencies are prevented.
+20. Schedule conflicts are detected.
+21. Academic capacity is calculated correctly.
+22. Smart rescheduling creates realistic proposals.
+23. Weekly goals update correctly.
+
+### THINK
+
+24. Flashcards work.
+25. Cognitive exercises work.
+26. Knowledge maps display actual topics.
+27. Spaced repetition works.
+28. Incorrect quiz answers create useful revision suggestions.
+29. Learning history is preserved.
+
+### FOCUS
+
+30. Pomodoro works.
+31. Neural Music works.
+32. Audio controls work.
+33. Music does not autoplay.
+34. Audio assets use valid licensing.
+35. Guided study breaks work.
+36. Study sessions are saved.
+37. Analytics use real information.
+
+### EVOLVE
+
+38. Challenges work.
+39. Quiz scores are saved.
+40. Achievements work.
+41. Academic reports use actual data.
+42. Milestones are recorded.
+43. Learning progress is calculated correctly.
+
+### Exam Preparation
+
+44. Exams can be registered.
+45. Exam topics can be managed.
+46. Preparation plans use real availability.
+47. Sessions are scheduled before exam dates.
+48. Plans require user approval.
+49. Mock examinations calculate results.
+50. Exam history is preserved.
+51. Exam changes update future proposals.
+
+### Library and Projects
+
+52. Resources can be uploaded.
+53. Resource permissions work.
+54. Projects can be created.
+55. Milestones work.
+56. Task dependencies work.
+57. Project progress updates correctly.
+
+### Supabase and security
+
+58. Records are saved in PostgreSQL.
+59. Information survives browser refresh.
+60. Information is available on other devices.
+61. Realtime synchronization works.
+62. RLS blocks cross-user access.
+63. Import and export work.
+64. Account deletion is secure.
+
+### Responsive design
+
+65. Desktop layout works.
+66. Tablet layout works.
+67. Mobile layout works.
+68. No unexpected horizontal overflow exists at 320px.
+69. Forms work with touch input.
+70. Calendars adapt to mobile.
+71. Exam Preparation is responsive.
+72. Neural Music controls work on mobile.
+73. Responsive Preview Lab works.
+74. Real-device testing is documented.
+75. PWA installation works where supported.
+
+Do not deliver unfinished functionality or decorative buttons presented as working controls.
+
+---
+
+# 34. DEVELOPMENT ROADMAP
+
+Develop NeuroStudy in controlled phases.
+
+## PHASE 1 — FOUNDATION AND BACKEND
+
+- Vite configuration.
+- Global design system.
+- Supabase connection.
+- Database schema.
+- SQL migrations.
+- Authentication.
+- RLS.
+- Onboarding.
+- Shared domain services.
+- Date utilities.
+- Responsive CSS foundations.
+
+Deliverable: A student can register, log in, create an academic profile, and save information securely.
+
+## PHASE 2 — CORE ACADEMIC ORGANIZATION
+
+- Dashboard.
+- Semester Manager.
+- Subject management.
+- Dynamic task system.
+- Calendar.
+- Quick Task Capture.
+- Task dependencies.
+- Schedule Conflict Detector.
+- Academic Capacity Calculator.
+- Weekly goals.
+- Task history.
+- Realtime synchronization.
+- Smart rescheduling.
+
+Deliverable: Students can manage academic responsibilities reliably.
+
+## PHASE 3 — EXAM PREPARATION
+
+- Exam registration.
+- Topic breakdown.
+- Preparation roadmaps.
+- Topic confidence.
+- Automatic preparation plans.
+- Practice quizzes.
+- Mock examinations.
+- Exam results.
+- Calendar integration.
+
+Deliverable: Students can manage an entire examination preparation journey.
+
+## PHASE 4 — THINK AND FOCUS
+
+- Memory exercises.
+- Knowledge maps.
+- Spaced repetition.
+- Learn From Your Mistakes.
+- Pomodoro timer.
+- Neural Music.
+- Guided study breaks.
+- Focus analytics.
+
+Deliverable: Students have a functioning learning and concentration environment.
+
+## PHASE 5 — PERSONAL DEVELOPMENT
+
+- EVOLVE.
+- Challenges.
+- Achievements.
+- Academic analytics.
+- Learning paths.
+- Grade tracker.
+- Project Workspace.
+- Personal Study Library.
+- Study Journal.
+- Weekly reports.
+
+Deliverable: Students can review and develop their academic progress.
+
+## PHASE 6 — ACADEMIC INTELLIGENCE
+
+- Academic Engine coordination.
+- Central recommendations.
+- Notification engine.
+- Workload detection.
+- Recovery mode.
+- Academic capacity.
+- Assignment breakdown.
+- Productivity patterns.
+- Command center.
+
+Deliverable: The application provides useful and explainable academic recommendations.
+
+## PHASE 7 — RESPONSIVE AND PRODUCTION READINESS
+
+- Responsive Preview Lab.
+- Device presets.
+- Custom viewport.
+- Real mobile testing.
+- Tablet testing.
+- Desktop testing.
+- PWA.
+- External calendar export.
+- Automated testing.
+- Security validation.
+- Bug fixes.
+- Documentation.
+- Deployment preparation.
+
+Deliverable: A tested and documented application ready for real users.
+
+Complete and test each phase before continuing.
+
+Do not replace functioning components with mockups.
+
+---
+
+# 35. README AND CONFIGURATION DOCUMENTATION
+
+Deliver a complete README explaining:
+
+### Project setup
+
+1. Install Node.js.
+2. Install dependencies.
+3. Configure Vite.
+4. Run the application locally.
+
+### Supabase
+
+5. Create a Supabase project.
+6. Obtain the Project URL.
+7. Obtain the Publishable Key.
+8. Configure environment variables.
+9. Execute SQL migrations.
+10. Configure Authentication.
+11. Configure email redirects.
+12. Configure RLS.
+13. Configure Realtime.
+14. Configure Storage.
+
+### Responsive testing
+
+15. Open Responsive Preview Lab.
+16. Select a device.
+17. Change viewport dimensions.
+18. Switch orientation.
+19. Preview every application page.
+20. Test through the local network.
+21. Open NeuroStudy on a physical phone.
+22. Verify touch behavior.
+
+### Neural Music
+
+23. Add properly licensed audio.
+24. Configure the track manifest.
+25. Test playback.
+26. Verify volume and playback controls.
+27. Check mobile browser behavior.
+
+### Automated testing
+
+28. Run unit tests.
+29. Run integration tests.
+30. Run Playwright tests.
+31. Run responsive viewport tests.
+32. Review security tests.
+
+### Deployment
+
+33. Configure production environment variables.
+34. Configure Supabase redirect URLs.
+35. Deploy the application.
+36. Test production authentication.
+37. Test database operations.
+38. Test synchronization.
+
+Include .env.example without real credentials.
+
+Never claim that a service is connected until its actual configuration has been supplied and tested.
+
+---
+
+# 36. FINAL PRODUCT IDENTITY
+
+NeuroStudy must feel like a complete digital academic operating system.
+
+It combines:
+
+- A personalized academic planner.
+- A dynamic task management system.
+- A cloud-connected academic database.
+- A cognitive learning environment.
+- A Neural Music concentration player.
+- An interactive challenge platform.
+- A complete examination preparation system.
+- A personal study library.
+- A project management workspace.
+- A grade and evaluation tracker.
+- An academic progress assistant.
+- A study session journal.
+- A permanent academic history.
+- A central academic coordination engine.
+- A responsive experience across devices.
+- A development preview and testing environment.
+
+Its most important differentiator is personalization.
+
+The application must understand that students have different educational backgrounds, subjects, schedules, learning goals, and responsibilities.
+
+The first experience should communicate:
+
+"I understand what you study."
+
+The Dashboard should communicate:
+
+"I know what you need to do next."
+
+The calendar should communicate:
+
+"Your academic activities are organized and always accessible."
+
+The learning environment should communicate:
+
+"I can help you improve."
+
+The focus environment should communicate:
+
+"Create the study atmosphere that works best for you."
+
+The examination environment should communicate:
+
+"You know what to study and how to prepare."
+
+The progress section should communicate:
+
+"You can see how far you have come."
+
+The Academic Engine should communicate:
+
+"Everything works together."
+
+The cloud infrastructure should communicate:
+
+"Your academic information is securely saved and available when you need it."
+
+The responsive experience should communicate:
+
+"Your academic workspace is available on any device."
+
+---
+
+# FINAL DEVELOPMENT INSTRUCTION
+
+Build NeuroStudy as a complete, visually impressive, functional, secure, and adaptable academic platform.
+
+Do not create just a beautiful interface.
+
+Do not create disconnected HTML pages.
+
+Do not use fake statistics.
+
+Do not pretend unfinished functionality works.
+
+Connect the frontend to a real Supabase database.
+
+Ensure every module communicates with the same authenticated student account and shared academic information.
+
+Preserve all existing working functionality.
+
+Use the central Academic Engine to coordinate shared business logic.
+
+Use one shared calendar system, one task service, one notification engine, and consistent database relationships.
+
+Implement the complete responsive experience for mobile, tablet, laptop, and desktop.
+
+Create Responsive Preview Lab so developers can simulate different screen sizes and inspect every application page.
+
+Include real-device testing documentation.
+
+Include the functional Neural Music button and integrated concentration audio player inside FOCUS.
+
+Include complete Exam Preparation Mode, Academic Capacity Calculator, Schedule Conflict Detector, Task Dependency System, Global Search, Project Workspace, Personal Study Library, and automated testing infrastructure.
+
+Do not remove any feature described in this specification.
+
+Develop and test the application phase by phase.
+
+The final product must be ready for students to register, organize academic responsibilities, prepare examinations, develop better learning habits, focus on their work, manage projects, and monitor personal progress from any device.
+
+# NEUROSTUDY
+
+## PLAN. THINK. FOCUS. EVOLVE.
